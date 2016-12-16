@@ -23,11 +23,14 @@ System.register(['angular2/core', './courses.component'], function(exports_1, co
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.title = "Angular App";
+                    this.imageUrl = "http://lorempixel.com/400/200/";
+                    this.isActive = true;
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: '<h1>AJS 2 app</h1><courses></courses>',
+                        template: "\n        <h1>{{ title }}</h1>\n        <img src=\"{{ imageUrl }}\" />\n        <img [src]=\"imageUrl\" />\n        <img bind-src=\"imageUrl\" />\n        <br /><br />\n        <button class=\"btn btn-primary\" [style.backgroundColor]=\"isActive ? 'blue' : 'gray'\">Submit</button>\n        <courses></courses>",
                         directives: [courses_component_1.CoursesComponent]
                     }), 
                     __metadata('design:paramtypes', [])
