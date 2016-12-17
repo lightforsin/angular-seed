@@ -1,6 +1,5 @@
-System.register(['angular2/core', './course.service', './auto-grow.directive'], function(exports_1, context_1) {
+System.register(["angular2/core", "./course.service", "./auto-grow.directive"], function (exports_1, context_1) {
     "use strict";
-    var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10,10 +9,10 @@ System.register(['angular2/core', './course.service', './auto-grow.directive'], 
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, course_service_1, auto_grow_directive_1;
-    var CoursesComponent;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, course_service_1, auto_grow_directive_1, CoursesComponent;
     return {
-        setters:[
+        setters: [
             function (core_1_1) {
                 core_1 = core_1_1;
             },
@@ -22,27 +21,28 @@ System.register(['angular2/core', './course.service', './auto-grow.directive'], 
             },
             function (auto_grow_directive_1_1) {
                 auto_grow_directive_1 = auto_grow_directive_1_1;
-            }],
-        execute: function() {
+            }
+        ],
+        execute: function () {
             CoursesComponent = (function () {
                 function CoursesComponent(courseService) {
                     this.title = "Course title";
                     this.courses = courseService.getCourses();
                 }
                 ;
-                CoursesComponent = __decorate([
-                    core_1.Component({
-                        selector: 'courses',
-                        template: "\n    <h2>Courses</h2>\n    {{ title }}\n    <input type=\"text\" autoGrow />\n    <ul>\n        <li *ngFor=\"#course of courses\">{{course}}</li>\n    </ul>\n    ",
-                        providers: [course_service_1.CourseService],
-                        directives: [auto_grow_directive_1.AutoGrowDirective]
-                    }), 
-                    __metadata('design:paramtypes', [course_service_1.CourseService])
-                ], CoursesComponent);
                 return CoursesComponent;
             }());
+            CoursesComponent = __decorate([
+                core_1.Component({
+                    selector: 'courses',
+                    template: "\n    <h2>Courses</h2>\n    {{ title }}\n    <input type=\"text\" autoGrow />\n    <ul>\n        <li *ngFor=\"#course of courses\">{{course}}</li>\n    </ul>\n    ",
+                    providers: [course_service_1.CourseService],
+                    directives: [auto_grow_directive_1.AutoGrowDirective]
+                }),
+                __metadata("design:paramtypes", [course_service_1.CourseService])
+            ], CoursesComponent);
             exports_1("CoursesComponent", CoursesComponent);
         }
-    }
+    };
 });
 //# sourceMappingURL=courses.component.js.map

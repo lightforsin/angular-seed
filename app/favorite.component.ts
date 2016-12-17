@@ -1,19 +1,24 @@
-import {Component} from 'angular2/core';
-
+import {Component, Input} from 'angular2/core';
 
 @Component({
     selector: 'favorite',
     template: `
-            <i class="glyphicon" 
-            [class.glyphicon-star]="isActive"
-            [class.glyphicon-star-empty]="!isActive"
-            (click)="toggleIsActive()"></i>
-        `
+    <label>{{ title + ' ' + aliasTitle }}</label>
+    <i 
+        class="glyphicon" 
+        [class.glyphicon-star]="isFavorite"
+        [class.glyphicon-star-empty]="!isFavorite"
+        (click)="toggleState()">
+    </i>
+    `,
+    inputs: ['isFavorite']
 })
 export class FavoriteComponent { 
-    isActive: boolean = false;
+    isFavorite: boolean = false;
+    @Input() title: string;
+    @Input('alias-title') aliasTitle: string;
 
-    toggleIsActive() {
-        this.isActive = !this.isActive;
+    toggleState() {
+        this.isFavorite = !this.isFavorite;
     }
 }

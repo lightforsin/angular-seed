@@ -1,10 +1,10 @@
-System.register([], function(exports_1, context_1) {
+System.register([], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var CourseService;
     return {
-        setters:[],
-        execute: function() {
+        setters: [],
+        execute: function () {
             CourseService = (function () {
                 function CourseService() {
                 }
@@ -15,6 +15,6 @@ System.register([], function(exports_1, context_1) {
             }());
             exports_1("CourseService", CourseService);
         }
-    }
+    };
 });
 //# sourceMappingURL=course.service.js.map
