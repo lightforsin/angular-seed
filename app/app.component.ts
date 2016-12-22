@@ -6,16 +6,17 @@ import {FavoriteComponent} from './favorite.component';
     template: `
         <favorite 
             [isFavorite]="post.isFavorite"
-            [title]="post.title"
-            [alias-title]="post.aliasTitle">
+            (change)="onFavoriteChange($event)">
         </favorite>
     `,
     directives: [FavoriteComponent]
 })
 export class AppComponent { 
     post = {
-        title: "My",
-        aliasTitle: 'Favorite',
         isFavorite: true 
+    }
+
+    onFavoriteChange($event) {
+        console.log($event);
     }
 }

@@ -1,24 +1,22 @@
-import {Component, Input} from 'angular2/core';
+import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'favorite',
     template: `
-    <label>{{ title + ' ' + aliasTitle }}</label>
     <i 
         class="glyphicon" 
         [class.glyphicon-star]="isFavorite"
         [class.glyphicon-star-empty]="!isFavorite"
         (click)="toggleState()">
     </i>
-    `,
-    inputs: ['isFavorite']
+    `
 })
 export class FavoriteComponent { 
-    isFavorite: boolean = false;
-    @Input() title: string;
-    @Input('alias-title') aliasTitle: string;
+    @Input() isFavorite: boolean;
+    @Output() change = new EventEmitter();
 
     toggleState() {
         this.isFavorite = !this.isFavorite;
+        this.change.emit({ newValue: this.isFavorite});
     }
 }
