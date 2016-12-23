@@ -2,8 +2,8 @@ import {Component, Input, Output, EventEmitter} from 'angular2/core';
 
 @Component({
     selector: 'voter',
-    templateUrl: 'app/voter.template.html',
-    styleUrls: ['app/voter.style.css']
+    templateUrl: 'app/components/voter/voter.template.html',
+    styleUrls: ['app/components/voter/voter.style.css']
 })
 export class VoterComponent { 
     @Input() voteCount = 0;
