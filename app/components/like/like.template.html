@@ -1,6 +1,7 @@
-<i
-    class="glyphicon glyphicon-heart" 
-    [class.highlighted]="iLike"
+<i [ngClass]="{
+        'glyphicon glyphicon-heart': true,
+        'highlighted': iLike
+    }"
     (click)="onClick()">
 </i>
 <span>{{ totalLikes }}</span>
