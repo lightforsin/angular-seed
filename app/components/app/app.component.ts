@@ -1,13 +1,12 @@
 import {Component} from 'angular2/core';
-import {TweetsComponent} from '../../components/tweets/tweets.component';
+import {ContactFormComponent} from '../../components/contact-form/contact-form.component';
 
 @Component({
     selector: 'my-app',
     template: `
-        <h2>Twitter</h2> <br />
-        <tweets></tweets>
+        <contact-form></contact-form>
     `,
-    directives: [TweetsComponent]
+    directives: [ContactFormComponent]
 })
 
 export class AppComponent { 
