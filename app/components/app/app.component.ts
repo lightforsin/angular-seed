@@ -1,8 +1,11 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 
 import {Component} from 'angular2/core';
-import {Observable} from 'rxjs/Rx';
 import {ControlGroup,FormBuilder} from 'angular2/common';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+//import 'rxjs/add/operator/fromArray';
 
 @Component({
     selector: 'my-app',
@@ -22,26 +25,31 @@ export class AppComponent {
 
         var search = this.form.find('search');
 
-        var values = search.valueChanges;
+        var changes = search.valueChanges
+            .debounceTime(400)
+            .map(str =>(<string>str).replace('','-­‐'));
 
-        //var transforms = values.filter(text => text.length > 3);
-            //.map(str =>(<string>str).replace('','-­‐'))
+        changes.subscribe(x => console.log(x));
 
-        values.subscribe(x => console.log(x));
+        // var startDates = [];
+        // var startDate = new Date();
 
-        // var element = $("#search");
+        // for(var day=-2; day <= 2; day++){
+        //     var date = new Date(
+        //         startDate.getFullYear(),
+        //         startDate.getMonth(),
+        //         startDate.getDate() + day
+        //     );
 
-        // var keyups = Observable.fromEvent(element, "keyup")
-        //     .map(e => e.target.value)
-        //     .filter(text => text.length >=3)
-        //     .debounceTime(400)
-        //     .distinctUntilChanged()
-        //     .flatMap(searchTerm => {
-        //         var url = "https://api.spotify.com/v1/search?type=artist&q=" + searchTerm;
-        //         var promise = $.getJSON(url);
-        //         return Observable.fromPromise(promise);
-        //     });
+        //     startDates.push(date);
+        // }
 
-        // keyups.subscribe(data => console.log(data));
+        // Observable
+        //     .fromArray(startDates)
+        //     .map(date => {
+        //         console.log("Getting deals for date " + date);
+        //         return [1, 2, 3];
+        //     })
+        //     .subscribe(x => console.log(x));
     }
 }
