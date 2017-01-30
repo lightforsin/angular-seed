@@ -10,6 +10,7 @@ import {ContactComponent} from '../../../app/components/contact/contact.componen
 import {ArchivesComponent} from '../../../app/components/archive/archives.component';
 import {ArchiveComponent} from '../../../app/components/archive/archive.component';
 import {UsersComponent} from '../../../app/components/users/users.component';
+import {AddUserComponent} from '../../../app/components/users/adduser.component';
 import {PostsComponent} from '../../../app/components/posts/posts.component';
 
 @RouteConfig([
@@ -20,6 +21,7 @@ import {PostsComponent} from '../../../app/components/posts/posts.component';
     {path: '/archives', name: 'Archives', component: ArchivesComponent},
     {path: '/archive/:year/:day', name: 'Archive', component: ArchiveComponent},
     {path: '/users', name: 'Users', component: UsersComponent},
+    {path: '/users/new', name: 'AddUser', component: AddUserComponent},
     {path: '/posts', name: 'Posts', component: PostsComponent},
     {path: '/*other', name: 'Other', redirectTo: ['Home']}
 ])
