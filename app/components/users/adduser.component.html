@@ -1,15 +1,9 @@
-<form [ngFormModel]="form" #f="ngForm">
+<form [ngFormModel]="form" #f="ngForm" (ngSubmit)="submit()">
     <fieldset>
         <legend>User</legend>
         <div class="form-group">
             <label for="name">Name</label>
-            <input 
-                id="name" 
-                type="text" 
-                class="form-control"
-                ngControl="name"
-                #name="ngForm">
-            
+            <input id="name" type="text" class="form-control" ngControl="name" #name="ngForm">
             <div *ngIf="name.touched && name.errors">
                 <div
                     *ngIf="name.errors.required" 
@@ -19,28 +13,21 @@
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input 
-                id="email" 
-                type="text" 
-                class="form-control"
-                ngControl="email"
-                #email="ngForm">
-            
+            <input id="email" type="text" class="form-control" ngControl="email" #email="ngForm">
             <div *ngIf="email.touched && email.errors">
                 <div
-                    *ngIf="name.errors.required" 
+                    *ngIf="email.errors.required" 
                     class="alert alert-danger">Email is required.
+                </div>
+                <div
+                    *ngIf="email.errors.shouldHaveCorrectFormat" 
+                    class="alert alert-danger">Email is not valid.
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input 
-                id="phone" 
-                type="text" 
-                class="form-control"
-                ngControl="phone"
-                #phone="ngForm">
+            <input id="phone" type="text" class="form-control" ngControl="phone" #phone="ngForm">
                 <div *ngIf="phone.touched && phone.errors">
                 <div
                     *ngIf="phone.errors.required" 
@@ -54,65 +41,19 @@
         <legend>Address</legend>
         <div class="form-group">
             <label for="street">Street</label>
-            <input 
-                id="street" 
-                type="text" 
-                class="form-control"
-                ngControl="street"
-                #street="ngForm">
-            
-            <div *ngIf="street.touched && street.errors">
-                <div
-                    *ngIf="street.errors.required" 
-                    class="alert alert-danger">Street is required
-                </div>
-            </div>
+            <input id="street" type="text" class="form-control" ngControl="street" #street="ngForm">
         </div>
         <div class="form-group">
             <label for="suite">Suite</label>
-            <input 
-                id="suite" 
-                type="text" 
-                class="form-control"
-                ngControl="suite"
-                #suite="ngForm">
-            
-            <div *ngIf="suite.touched && suite.errors">
-                <div
-                    *ngIf="suite.errors.required" 
-                    class="alert alert-danger">Suite is required.
-                </div>
-            </div>
+            <input id="suite" type="text" class="form-control" ngControl="suite" #suite="ngForm">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input 
-                id="city" 
-                type="text" 
-                class="form-control"
-                ngControl="city"
-                #city="ngForm">
-                <div *ngIf="city.touched && city.errors">
-                <div
-                    *ngIf="city.errors.required" 
-                    class="alert alert-danger">City is required.
-                </div>
-            </div>
+            <input id="city" type="text" class="form-control" ngControl="city" #city="ngForm">
         </div>
         <div class="form-group">
             <label for="zipcode">ZipCode</label>
-            <input 
-                id="zipcode" 
-                type="text" 
-                class="form-control"
-                ngControl="zipcode"
-                #zipcode="ngForm">
-                <div *ngIf="zipcode.touched && zipcode.errors">
-                <div
-                    *ngIf="zipcode.errors.required" 
-                    class="alert alert-danger">ZipCode is required.
-                </div>
-            </div>
+            <input id="zipcode" type="text" class="form-control" ngControl="zipcode" #zipcode="ngForm">
         </div>
     </fieldset>
 
