@@ -14,11 +14,18 @@ import {UserService} from '../../services/user.service';
             background-color: lightgray;
             border: none;
         }
+
+        .panel {
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }        
     `],
     providers: [HTTP_PROVIDERS, UserService]
 })
 export class AddUserComponent implements CanDeactivate {
     form: ControlGroup; 
+    title: string;
 
     constructor(fb: FormBuilder, 
         private _router: Router, 
@@ -33,6 +40,8 @@ export class AddUserComponent implements CanDeactivate {
             city: [''],
             zipcode: ['']
         })
+
+        this.title = "Add user";
     }
 
     // submit(form) {

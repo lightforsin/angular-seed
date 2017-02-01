@@ -22,6 +22,7 @@ import {PostsComponent} from '../../../app/components/posts/posts.component';
     {path: '/archive/:year/:day', name: 'Archive', component: ArchiveComponent},
     {path: '/users', name: 'Users', component: UsersComponent},
     {path: '/users/new', name: 'AddUser', component: AddUserComponent},
+    {path: '/users/:id', name: 'EditUser', component: AddUserComponent},
     {path: '/posts', name: 'Posts', component: PostsComponent},
     {path: '/*other', name: 'Other', redirectTo: ['Home']}
 ])
