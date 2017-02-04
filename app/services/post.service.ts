@@ -4,6 +4,7 @@ import {Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
 import {Post} from '../models/post';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class PostService {
@@ -15,6 +16,7 @@ export class PostService {
 
     getPosts(): Observable<Post[]> {
         return this._http.get(this._url)
+            .delay(1000)
             .map(res => res.json());
     }
 
