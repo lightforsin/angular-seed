@@ -24,7 +24,11 @@ import {AddUserComponent} from '../../components/users/adduser.component';
                 <tr *ngFor="#user of users">
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
-                    <td>ABC</td>
+                    <td>
+                        <a [routerLink]="['AddUser', { id: user.id }]">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                    </td>
                     <td>DEF</td>
                 </tr>
             </tbody>

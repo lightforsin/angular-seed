@@ -1,10 +1,11 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {ControlGroup, Validators, FormBuilder} from 'angular2/common';
 import {EmailValidators} from './emailValidator';
 import {Router, CanDeactivate} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
+import {RouteParams} from 'angular2/router';
 
 @Component({
     selector: 'add-user',
@@ -23,13 +24,15 @@ import {UserService} from '../../services/user.service';
     `],
     providers: [HTTP_PROVIDERS, UserService]
 })
-export class AddUserComponent implements CanDeactivate {
+export class AddUserComponent implements CanDeactivate, OnInit {
     form: ControlGroup; 
     title: string;
+    user: User = new User();
 
     constructor(fb: FormBuilder, 
         private _router: Router, 
-        private _userService: UserService) {
+        private _userService: UserService,
+        private _routeParams: RouteParams) {
         
         this.form = fb.group({
             name: ['', Validators.required],
@@ -40,8 +43,6 @@ export class AddUserComponent implements CanDeactivate {
             city: [''],
             zipcode: ['']
         })
-
-        this.title = "Add user";
     }
 
     // submit(form) {
@@ -68,5 +69,24 @@ export class AddUserComponent implements CanDeactivate {
         }
 
         return true;
+    }
+
+    ngOnInit() {
+        let userId = this._routeParams.get("id");
+        if(userId === null) {
+            this.title = "Add user";
+        }
+        else {
+            this.title = "Edit user";
+
+            this._userService.getUsers()
+                .map(users => {
+                    return users.filter(user => user.id == userId);
+                })
+                .subscribe(users => {
+                    if(users.length > 0)
+                        this.user = users[0];
+                });
+        }
     }
 }
