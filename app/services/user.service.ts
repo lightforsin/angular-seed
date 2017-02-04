@@ -28,4 +28,9 @@ export class UserService {
         return this._http.post(this._url, JSON.stringify(user))
             .map(res => res.json());
     }
+
+    updateUser(user: User) {
+        return this._http.put(this._url + "/" + user.id, JSON.stringify(user))
+            .map(res => res.json());
+    }
 }

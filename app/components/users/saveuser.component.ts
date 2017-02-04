@@ -9,7 +9,7 @@ import {RouteParams} from 'angular2/router';
 
 @Component({
     selector: 'add-user',
-    templateUrl: '/app/components/users/adduser.component.html',
+    templateUrl: '/app/components/users/saveuser.component.html',
     styles: [`
         .alert-danger {
             background-color: lightgray;
@@ -24,9 +24,10 @@ import {RouteParams} from 'angular2/router';
     `],
     providers: [HTTP_PROVIDERS, UserService]
 })
-export class AddUserComponent implements CanDeactivate, OnInit {
+export class SaveUserComponent implements CanDeactivate, OnInit {
     form: ControlGroup; 
     title: string;
+    buttonText: string;
     user: User = new User();
 
     constructor(fb: FormBuilder, 
@@ -54,10 +55,18 @@ export class AddUserComponent implements CanDeactivate, OnInit {
     // }
 
     submit() {
-        this._userService.createUser(this.form.value)
-            .subscribe(x => {
-                this._router.navigate(['Users']);
-            });
+        if(this.title == "Add user"){
+            this._userService.createUser(this.form.value)
+                .subscribe(x => {
+                    this._router.navigate(['Users']);
+                });
+        }
+        else {
+            this._userService.updateUser(this.user)
+                .subscribe(x => {
+                    this._router.navigate(['Users']);
+                });
+        }
     }
 
     routerCanDeactivate(next, previous) {
@@ -75,9 +84,11 @@ export class AddUserComponent implements CanDeactivate, OnInit {
         let userId = this._routeParams.get("id");
         if(userId === null) {
             this.title = "Add user";
+            this.buttonText = "Add user";
         }
         else {
             this.title = "Edit user";
+            this.buttonText = "Update user";
 
             this._userService.getUsers()
                 .map(users => {

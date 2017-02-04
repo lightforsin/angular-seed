@@ -4,14 +4,14 @@ import {HTTP_PROVIDERS} from 'angular2/http';
 import {ROUTER_DIRECTIVES} from 'angular2/router';
 import {User} from '../../models/user';
 import {UserService} from '../../services/user.service';
-import {AddUserComponent} from '../../components/users/adduser.component';
+import {SaveUserComponent} from '../../components/users/saveuser.component';
 
 @Component({
     selector: 'users',
     template: `
         <h1>Users</h1>
 
-        <a class="btn btn-primary" [routerLink]="['AddUser']">Add user</a>
+        <a class="btn btn-primary" [routerLink]="['\SaveUser', {id: null}]">Add user</a>
 
         <table class="table table-bordered">
             <thead>
@@ -25,7 +25,7 @@ import {AddUserComponent} from '../../components/users/adduser.component';
                     <td>{{user.name}}</td>
                     <td>{{user.email}}</td>
                     <td>
-                        <a [routerLink]="['AddUser', { id: user.id }]">
+                        <a [routerLink]="['SaveUser', { id: user.id }]">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                         </a>
                     </td>
