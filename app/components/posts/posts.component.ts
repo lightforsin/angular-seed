@@ -11,10 +11,20 @@ import {Post} from '../../models/post';
         <div class="col-md-6">
             <spinner [isVisible]="isLoading"></spinner>
             <ul class="list-group">
-                <li *ngFor="#post of posts" class="list-group-item">
+                <li *ngFor="#post of posts" class="list-group-item" (click)="selectPost(post)">
                     {{ post.title}}
                 </li>
             </ul>
+        </div>
+        <div class="col-md-6" *ngIf="selectedPost != null">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ selectedPost.title }}</h3>
+                </div>
+                <div class="panel-body">
+                    {{ selectedPost.body }}
+                </div>
+            </div>
         </div>
     `,
     styleUrls: ['app/components/posts/posts.styles.css'],
@@ -24,6 +34,7 @@ import {Post} from '../../models/post';
 export class PostsComponent implements OnInit {
     posts: Post[];
     isLoading = true;
+    selectedPost: Post = null;
     
     constructor(private _postService: PostService) {   
     }
@@ -35,5 +46,9 @@ export class PostsComponent implements OnInit {
                 this.isLoading = false;
             });
         
+    }
+
+    selectPost(post: Post) {
+        this.selectedPost = post;
     }
 }
