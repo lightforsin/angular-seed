@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import {Injectable} from 'angular2/core';
 import {Observable} from 'rxjs/Observable';
 import {Post} from '../models/post';
+import {Comment} from '../models/comment';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/delay';
 
@@ -28,6 +29,13 @@ export class PostService {
 
     createPost(post: Post) {
         return this._http.post(this._url, JSON.stringify(post))
+            .map(res => res.json());
+    }
+
+    getComments(postId: string): Observable<Comment[]> {
+        let url = this._url + "/" + postId + "/comments";
+        return this._http.get(url)
+            .delay(1000)
             .map(res => res.json());
     }
 }
