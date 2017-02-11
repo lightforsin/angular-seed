@@ -1,6 +1,7 @@
 /// <reference path="../../../typings/tsd.d.ts" />
 import {Component, OnInit} from 'angular2/core';
 import {PostService} from '../../services/post.service';
+import {SpinnerComponent} from '../../components/spinner/spinner.component';;
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {Post} from '../../models/post';
 
@@ -8,7 +9,7 @@ import {Post} from '../../models/post';
     selector: 'posts',
     template: `<h1>Posts</h1>
         <div class="col-md-6">
-            <i *ngIf="isLoading" class="fa fa-spinner fa-spin fa-3x"></i>
+            <spinner [isVisible]="isLoading"></spinner>
             <ul class="list-group">
                 <li *ngFor="#post of posts" class="list-group-item">
                     {{ post.title}}
@@ -16,17 +17,9 @@ import {Post} from '../../models/post';
             </ul>
         </div>
     `,
-    styles: [`
-        .list-group-item {
-            border: 1px solid #2c3e50;
-        }
-
-        li:hover {
-            font-weight: bold;
-            cursor: pointer;
-        }
-    `],
-    providers: [PostService, HTTP_PROVIDERS]
+    styleUrls: ['app/components/posts/posts.styles.css'],
+    providers: [PostService, HTTP_PROVIDERS],
+    directives: [SpinnerComponent]
 })
 export class PostsComponent implements OnInit {
     posts: Post[];
