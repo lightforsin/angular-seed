@@ -16,7 +16,7 @@ import {Comment} from '../../models/comment';
 export class PostsComponent implements OnInit {
     posts: Post[];
     comments: Comment[];
-    isLoading = true;
+    arePostsLoading = true;
     areCommentsLoading = true;
     selectedPost: Post = null;
     
@@ -27,7 +27,7 @@ export class PostsComponent implements OnInit {
         this._postService.getPosts()
             .subscribe(data => {
                 this.posts = data
-                this.isLoading = false;
+                this.arePostsLoading = false;
             });
         
     }
@@ -40,6 +40,16 @@ export class PostsComponent implements OnInit {
             .subscribe(data => {
                 this.comments = data
                 this.areCommentsLoading = false;
+            });
+    }
+
+    getPostsForUser(userId: string) {
+        this.arePostsLoading = true;
+
+        this._postService.getPostsForUserId(userId)
+            .subscribe(data => {
+                this.posts = data;
+                this.arePostsLoading = false;
             });
     }
 }

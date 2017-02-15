@@ -1,6 +1,14 @@
-<h1>Posts</h1>
+<h1>Posts
+    <spinner [isVisible]="arePostsLoading"></spinner>
+</h1>
 <div class="col-md-6">
-    <spinner [isVisible]="isLoading"></spinner>
+    
+    <select #u (change)="getPostsForUser(u.value)"  class="form-control">
+        <option value="null">Select a user...</option>
+        <option value="1">User 1</option>
+        <option value="2">User 2</option>
+    </select>
+    
     <ul class="list-group">
         <li *ngFor="#post of posts" class="list-group-item" (click)="selectPost(post)">
             {{ post.title}}

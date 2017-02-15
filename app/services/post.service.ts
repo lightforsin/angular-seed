@@ -21,6 +21,14 @@ export class PostService {
             .map(res => res.json());
     }
 
+    getPostsForUserId(userId: string): Observable<Post[]> {
+        let url: string = this._url + (userId === "null" ? "" : "?userId=" + userId);
+
+        return this._http.get(url)
+            .delay(1000)
+            .map(res => res.json());
+    }
+
     getPostsAsPromises(): Promise<Post[]> {
         return this._http.get(this._url)
             .map(res => res.json())

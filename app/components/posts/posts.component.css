@@ -11,3 +11,8 @@ li:hover {
 .media-object {
     border-radius: 100%;
 }
+
+select.form-control {
+    margin-bottom: 10px;
+    background-color: #efefef;
+}
