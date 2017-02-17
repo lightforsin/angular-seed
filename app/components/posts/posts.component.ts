@@ -29,13 +29,17 @@ export class PostsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._userService.getUsers()
-            .subscribe(data => this.users = data);
-        
+        this.loadUsers();
         this.loadPosts();
     }
 
-    loadPosts(filter?) {
+
+    private loadUsers() {
+        this._userService.getUsers()
+            .subscribe(data => this.users = data);
+    }
+
+    private loadPosts(filter?) {
         this.arePostsLoading = true;
 
         this._postService.getPosts(filter)
