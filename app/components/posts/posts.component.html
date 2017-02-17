@@ -3,10 +3,9 @@
 </h1>
 <div class="col-md-6">
     
-    <select #u (change)="getPostsForUser(u.value)"  class="form-control">
+    <select  #u (change)="getPostsForUser({userId: u.value})"  class="form-control">
         <option value="null">Select a user...</option>
-        <option value="1">User 1</option>
-        <option value="2">User 2</option>
+        <option *ngFor="#user of users" value="{{user.id}}">{{user.name}}</option>
     </select>
     
     <ul class="list-group">

@@ -15,8 +15,14 @@ export class PostService {
         
     }
 
-    getPosts(): Observable<Post[]> {
-        return this._http.get(this._url)
+    getPosts(filter?): Observable<Post[]> {
+        let url = this._url;
+
+        if(filter && filter.userId)
+        {
+            url += "?userId=" + filter.userId;
+        }
+        return this._http.get(url)
             .delay(1000)
             .map(res => res.json());
     }
