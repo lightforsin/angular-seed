@@ -8,8 +8,11 @@
         <option *ngFor="#user of users" value="{{user.id}}">{{user.name}}</option>
     </select>
     
+    <pagination *ngIf="posts && posts.length > pageSize" [items]="posts" [pagesize]="pageSize"
+        (change)="onPageChanged($event)"></pagination>
+
     <ul class="list-group">
-        <li *ngFor="#post of posts" class="list-group-item" (click)="selectPost(post)">
+        <li *ngFor="#post of pagedPosts" class="list-group-item" (click)="selectPost(post)">
             {{ post.title}}
         </li>
     </ul>

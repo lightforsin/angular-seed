@@ -18,7 +18,7 @@ export class PostService {
     getPosts(filter?): Observable<Post[]> {
         let url = this._url;
 
-        if(filter && filter.userId)
+        if(filter && filter.userId && filter.userId != 'null')
         {
             url += "?userId=" + filter.userId;
         }

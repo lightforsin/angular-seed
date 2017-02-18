@@ -1,0 +1,13 @@
+<nav>
+  <ul class="pagination">
+    <li [class.disabled]="currentPage == 1">
+        <span (click)="selectPrevious()">&laquo;</span>
+    </li>
+    <li *ngFor="#page of pages" [class.active]="currentPage == page">
+        <span (click)="selectPage(page)">{{ page }}</span>
+    </li>
+    <li [class.disabled]="currentPage == pages.length">
+        <span (click)="selectNext()">&raquo;</span>
+    </li>
+  </ul>
+</nav>
